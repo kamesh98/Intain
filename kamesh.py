@@ -175,6 +175,8 @@ print(confusion)
 import lightgbm as lgb 
 import xgboost as xgb 
 #X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 7,shuffle = True)
+
+#using XGBOOST
 dtrain=xgb.DMatrix(X_train,label=y_train)
 dtest=xgb.DMatrix(X_test)
 parameters={'max_depth':7, 'eta':.1, 'silent':1,'objective':'binary:logistic','eval_metric':'logloss','learning_rate':.01}
@@ -202,6 +204,7 @@ print(cm)
 accuracy_lgbm = accuracy_score(ypred2_lg,y_test)
 print("LGBM",accuracy_lgbm)
 
+#Using categorical Boosting for classification
 from catboost import CatBoostClassifier
 model = CatBoostClassifier(iterations=50,depth=7,learning_rate=0.05)
 model.fit(X_train, y_train)
